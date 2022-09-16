@@ -1,0 +1,39 @@
+int pirsensor=0;
+int tempsensor=0;
+void setup()
+{
+  pinMode(13,OUTPUT);
+  pinMode(2,INPUT);
+  pinMode(4,OUTPUT);
+  pinMode(A0,INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  pirsensor=digitalRead(2);
+  if (pirsensor==HIGH)
+  {
+    digitalWrite(13,HIGH);
+    delay(100);
+  }
+  else
+  {
+    digitalWrite(13,LOW);
+    delay(100);
+  }
+  tempsensor=analogRead(A0);
+  Serial.print("tempsensor=");
+  Serial.println(tempsensor);
+  if(tempsensor > 100)
+  {
+    digitalWrite(4,HIGH);
+    delay(100);
+  }
+  else
+  {
+    digitalWrite(4,LOW);
+    delay(100);
+  }
+  
+}
